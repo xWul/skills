@@ -1,3 +1,8 @@
+---
+name: frontend-performance-audit
+description: Audit frontend projects for layout shifts, unnecessary re-renders, expensive rendering, and state-management performance issues.
+---
+
 # Frontend Layout Shift & Re-render Audit
 
 ## Purpose
