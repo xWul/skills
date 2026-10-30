@@ -1,185 +1,80 @@
 # Skills
 
-A collection of reusable AI skills for **Codex and other AI agents**.
-
-The goal of this repository is to store practical, focused instructions that help AI agents perform recurring tasks more consistently across software development, automation, research, career workflows, productivity, and other areas.
+Reusable skills for Codex, Claude Code, and other AI agents. Each skill provides
+instructions for a specific workflow, with supporting references where needed.
 
 ## Available skills
 
-### `frontend-performance-audit`
+| Skill | What it does | Documentation |
+| --- | --- | --- |
+| `frontend-performance-audit` | Audits frontend code for layout shifts, unnecessary React re-renders, and expensive updates. Returns prioritized findings with evidence and suggested fixes. | [Usage and installation](frontend-performance-audit/README.md) |
+| `conversion-copywriter` | Creates and reviews ads, landing pages, emails, and video scripts. Includes optional specialist agents for Codex and Claude Code. | [Usage and installation](conversion-copywriter/README.md) |
 
-Audits frontend projects for performance issues such as:
+## Quick start
 
-- Layout shifts and CLS risks
-- Unnecessary re-renders
-- Expensive component updates
-- Broad state subscriptions
-- Inefficient derived calculations
-- Context propagation
-- Large lists
-- High-frequency updates
-- Loading and skeleton mismatches
+Install a skill with the [Agent Skills CLI](https://github.com/vercel-labs/skills)
+(requires Node.js 22.20+):
 
-More skills will be added over time.
+```bash
+npx skills add xWul/skills
+```
 
-## Repository structure
+Choose a skill and target application in the prompt. Installations apply to the
+current project by default; add `-g` to make a skill available across projects.
+
+To install one skill directly:
+
+```bash
+npx skills add xWul/skills --skill frontend-performance-audit
+npx skills add xWul/skills --skill conversion-copywriter
+```
+
+To list the available skills without installing:
+
+```bash
+npx skills add xWul/skills --list
+```
+
+After installation, ask your agent to use the skill by name. Each skill's README
+includes example requests, expected output, and any additional setup.
+
+The conversion skill also includes a `conversion-strategist` agent. See its
+[installation guide](conversion-copywriter/README.md#skill--specialist-agent)
+for commands that install both the skill and the agent through `npx`.
+
+## Repository layout
 
 ```text
 skills/
 ├── frontend-performance-audit/
+│   ├── README.md              # Installation, usage, and scope
+│   └── SKILL.md               # Instructions loaded by the agent
+├── conversion-copywriter/
+│   ├── README.md
 │   ├── SKILL.md
-│   └── references/
-│
-└── future-skill/
-    ├── SKILL.md
-    └── references/
+│   ├── agents/openai.yaml     # Codex skill metadata
+│   └── references/            # Guides for specific copywriting tasks
+├── platforms/                 # Specialist agents and platform notes
+├── scripts/                   # Installers
+├── tests/                     # Installer checks
+└── package.json
 ```
-
-Each skill lives in its own directory and should contain a `SKILL.md` file.
-
-Optional supporting content can be placed in directories such as:
-
-```text
-references/
-scripts/
-assets/
-```
-
-## What is a skill?
-
-A skill is a reusable set of instructions that teaches an AI agent how to perform a specific task or workflow.
-
-A typical skill defines:
-
-- What the skill does
-- When it should be used
-- The workflow the agent should follow
-- Important constraints
-- Best practices
-- Expected output
-- Optional supporting references or scripts
-
-Example:
-
-```md
----
-name: frontend-performance-audit
-description: Audit frontend projects for layout shifts, unnecessary re-renders, expensive rendering, and state-management performance issues.
----
-
-# Frontend Performance Audit
-
-Instructions...
-```
-
-The description is especially important because it helps an AI agent determine when the skill is relevant.
-
-## Usage
-
-Clone the repository:
-
-```bash
-git clone https://github.com/xwul/skills.git
-```
-
-Make the relevant skill available to your AI agent or coding environment.
-
-You can then explicitly request a skill:
-
-```text
-Use the frontend-performance-audit skill to audit this project.
-
-Focus on layout shifts and unnecessary re-renders.
-```
-
-Depending on the agent and environment, skills may also be selected automatically when their description matches the task.
-
-## Adding a new skill
-
-Create a directory for the skill:
-
-```text
-skills/
-└── my-new-skill/
-    └── SKILL.md
-```
-
-Start with:
-
-```md
----
-name: my-new-skill
-description: Describe what this skill does and when an agent should use it.
----
-
-# My New Skill
-
-## Purpose
-
-Describe the goal of the skill.
-
-## When to use
-
-Describe when the skill should be selected.
-
-## Workflow
-
-Describe the steps the agent should follow.
-
-## Output
-
-Describe what a successful result should look like.
-```
-
-For larger skills, keep `SKILL.md` focused and move detailed material into references:
-
-```text
-my-new-skill/
-├── SKILL.md
-└── references/
-    ├── topic-a.md
-    └── topic-b.md
-```
-
-## Principles
-
-Skills in this repository should aim to be:
-
-**Focused**  
-Each skill should solve a clear problem or workflow.
-
-**Reusable**  
-Avoid unnecessary assumptions about a specific project unless the skill is intentionally project-specific.
-
-**Practical**  
-The output should help complete real work.
-
-**Evidence-based**  
-Agents should inspect the available context before making recommendations.
-
-**Composable**  
-Skills should work well alongside other skills and agent instructions.
-
-**Maintainable**  
-Prefer concise `SKILL.md` files with supporting details moved into references when necessary.
-
-## Roadmap
-
-The repository may eventually include skills for areas such as:
-
-- Software engineering
-- Code review
-- Performance
-- Architecture
-- Testing
-- Automation
-- Job search
-- Research
-- Productivity
-- Personal workflows
 
 ## Contributing
 
-Suggestions, improvements, and new skills are welcome.
+Create a directory named after the skill with:
 
-When adding a skill, keep its scope clear and document when it should be used.
+- `SKILL.md`: instructions with `name` and `description` in YAML frontmatter.
+- `README.md`: a short overview, installation command, and usage examples.
+- Optional `references/`, `scripts/`, or `assets/` when the workflow needs them.
+
+Keep skills focused on a clear task, ground recommendations in available
+evidence, and add an entry to the table above. Put detailed agent instructions in
+`SKILL.md` and supporting references; use the README to help people choose and
+install the skill.
+
+To check the bundled installer after making changes:
+
+```bash
+npm test
+```

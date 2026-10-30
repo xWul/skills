@@ -1,0 +1,4 @@
+interface:
+  display_name: "Conversion Copywriter"
+  short_description: "Persuasive ads, landing pages, and copy audits"
+  default_prompt: "Use $conversion-copywriter to create credible conversion copy with distinct strategic angles, proof-aware claims, and measurable tests."

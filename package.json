@@ -1,0 +1,25 @@
+{
+  "name": "@xwul/skills",
+  "version": "1.0.0",
+  "description": "Reusable agent skills and optional specialist agents",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xWul/skills.git"
+  },
+  "type": "module",
+  "bin": {
+    "xwul-skills": "scripts/install.mjs"
+  },
+  "files": [
+    "scripts/",
+    "conversion-copywriter/",
+    "frontend-performance-audit/",
+    "platforms/"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "test": "node --test tests/*.test.mjs"
+  }
+}
