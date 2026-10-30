@@ -93,29 +93,75 @@ Those skill locations are `~/.agents/skills/`, `~/.claude/skills/`,
 
 ## Usage
 
-For Codex:
+### Create ad concepts
+
+For Codex, invoke the skill with a concrete brief:
 
 ```text
-$conversion-copywriter Create four Meta Ads concepts for a R$57 digital
-nursery-planning guide for first-time parents in Brazil. Use different angles,
-include visual concepts, and do not invent safety statistics.
+$conversion-copywriter
+
+Product: An e-book with practical home-organization checklists.
+Price: R$49.
+Audience: Brazilian adults who live in small apartments and want a more
+organized home without buying more furniture.
+Channel: Instagram and Facebook feed ads.
+Goal: Qualified visits to the product's landing page.
+
+Create three ad concepts in Brazilian Portuguese, each with a distinct angle.
+For each concept, provide the hook, primary text, headline, CTA, suggested
+visual, and a measurable test hypothesis.
+
+Use only the product details above. Do not invent testimonials, results,
+discounts, or urgency. Flag any missing information needed before publication.
 ```
 
 For Claude Code, invoke `/conversion-copywriter`. In other applications, ask
-the agent to use the skill by name:
+the agent to use `conversion-copywriter` by name.
+
+### Audit a landing page with the specialist agent
+
+After installing the specialist agent, use a brief like this in Codex.
+The Codex agent is named `conversion_strategist`; in Claude Code, use
+`conversion-strategist` instead.
 
 ```text
-Use conversion-copywriter to audit this landing page. Identify the three
-weakest persuasion steps, rewrite the relevant passages, and propose tests.
-Use only the product details and evidence I provide.
-```
+Delegate to conversion_strategist.
 
-After installing the specialist agent in an application that supports it,
-you can also request delegation:
+Product: Claude, Anthropic's AI assistant.
+Pricing: Use the current information on the official website. Do not assume
+plan prices or features that are not shown.
+Audience hypothesis for this audit: Professionals evaluating an AI assistant
+for writing, research, analysis, and everyday work.
+Goal: Help qualified visitors understand the product and start using Claude.
 
-```text
-Delegate a review of these ad concepts to conversion-strategist.
-Compare audience motivations, clarity, available proof, and the CTA.
+Analyze this public landing page: https://claude.com/product/overview
+
+Use the complete conversion-copywriter framework, consulting its reference
+guides as relevant to the audit, especially landing pages, briefs, and
+reviews and experiments.
+
+Perform a conversion-focused audit:
+
+1. Evaluate the value proposition and its relevance to the audience.
+2. Analyze the headline and first-screen experience, including mobile clarity.
+3. Identify weak, generic, or confusing copy, quoting the affected passages.
+4. Evaluate how clearly the page explains the benefits, use cases,
+   product capabilities, and how to get started.
+5. Review available social proof, CTAs, and responses to likely objections.
+6. Identify the three highest-priority improvements, explaining the evidence
+   and likely impact behind each recommendation.
+7. Rewrite the affected sections in the page's language, using only supported
+   product details and clearly marking any proof placeholders.
+8. Propose measurable A/B tests with a hypothesis, the change to test, and a
+   primary success metric, such as completed sign-ups. Explain what tracking
+   would be needed without assuming access to Anthropic's analytics.
+
+Do not modify the website. If you cannot access the page, state that limitation
+and request its copy or screenshots before making page-specific findings.
+Do not invent testimonials, metrics, discounts, urgency, or product claims.
+
+Return actionable findings ordered by estimated impact. Distinguish observed
+facts from hypotheses and do not promise conversion gains.
 ```
 
 ## What you get
